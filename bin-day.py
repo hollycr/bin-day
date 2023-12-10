@@ -1,8 +1,5 @@
-
 import re, requests, datetime
-#from datetime import datetime
 from bs4 import BeautifulSoup
-
 
 myURL = "https://community.newcastle.gov.uk/my-neighbourhood/your-details?uprn=004510071116&ens=426954%2C565008&address=85+Tynemouth+Road%2CNewcastle+upon+Tyne%2CNE6+1SH&addresses=004510071116%3B426954%2C565008%3B87+Tynemouth+Road%2CNewcastle+upon+Tyne%2CNE6+1SH" # scraping this with BS doesn't work as it's not plain html, and has JavaScript dynamically loading content
 
@@ -13,9 +10,6 @@ soup = BeautifulSoup(r.content, 'html5lib')
 
 # .find('div', attrs = {'id', 'binsdiv})
 data = soup.find('p', ) 
-
-#print(data.prettify())
-
 bigString = data.prettify()
 
 start = bigString.find("Green")
