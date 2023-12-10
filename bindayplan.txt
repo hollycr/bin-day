@@ -11,7 +11,7 @@ step-by-step breakdown:
       </p>
       </div> 
    The content I want is being loaded dynamically by JavaScript, so I need a different tool like Selenium to automate browser actions and interact with the dynamic elements on the page. Need to use Selenium to wait for the "loading details" message to disappear or for the details to become visible, indicating that the dynamic content has been loaded. Once the dynamic content is loaded, you can then use BeautifulSoup to parse the HTML and extract the information you need. 
-   Current workaround has been to pull the unique address when inspecting the site with dev tools. Will need to test if this unique url still stands after a change - for the next weeks data.
+   Current workaround has been to pull the XHR Request when inspecting the site with dev tools. Will need to test if this unique url still stands after a change - for the next weeks data.
 
 
 2. **Front-End Development**:

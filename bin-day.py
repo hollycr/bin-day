@@ -33,13 +33,6 @@ if nextGreenDate < nextBlueDate:
 else:
     print("It's BLUE bin day on Thursday (so put your bin out on Wednesday)!")
 
-
-'''BeautifulSoup is a web scraper tool for static HTML - it will read the HTML from a page, so at the minute i can read all the page info but it says "loading details" when i search for binsdiv
-<div id="binsdiv">
- <p>
-  Loading details....
- </p>
-</div> 
-The content I want is being loaded dynamically by JavaScript, so I need a different tool like Selenium to automate browser actions and interact with the dynamic elements on the page. Need to use Selenium to wait for the "loading details" message to disappear or for the details to become visible, indicating that the dynamic content has been loaded. Once the dynamic content is loaded, you can then use BeautifulSoup to parse the HTML and extract the information you need. 
-'''
-
+# TO-DO
+# - use automation tools to text the result out
+# - use automation tools so the programme runs on a weekly basis
