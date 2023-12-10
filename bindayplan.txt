@@ -1,14 +1,23 @@
-Yes, you can certainly start by building the front end and the web scraping script separately before integrating them with the server and API. 
-This approach is commonly used and can help you tackle one aspect of the project at a time. Here's a step-by-step breakdown of how you can proceed:
+Building the front end and the web scraping script separately before integrating them with the server and API. 
+step-by-step breakdown:
 
-1. **Front-End Development**:
+1. **Web Scraping Script**:
+   - Develop the Python web scraping script independently. This script can be tested separately by running it in your terminal, 
+   and you can use hard-coded or manually input data initially.
+   BeautifulSoup is a web scraper tool for static HTML - it will read the HTML from a page, so at the minute i can read all the page info but it says "loading details" when i search for binsdiv
+      <div id="binsdiv">
+      <p>
+      Loading details....
+      </p>
+      </div> 
+   The content I want is being loaded dynamically by JavaScript, so I need a different tool like Selenium to automate browser actions and interact with the dynamic elements on the page. Need to use Selenium to wait for the "loading details" message to disappear or for the details to become visible, indicating that the dynamic content has been loaded. Once the dynamic content is loaded, you can then use BeautifulSoup to parse the HTML and extract the information you need. 
+   Current workaround has been to pull the unique address when inspecting the site with dev tools. Will need to test if this unique url still stands after a change - for the next weeks data.
+
+
+2. **Front-End Development**:
    - Begin by creating the user interface (HTML and JavaScript) without the server and API.
    - Design the input forms and the display area for the data, but instead of sending data to a server, 
    you can initially use JavaScript to process the data locally or just for user interaction.
-
-2. **Web Scraping Script**:
-   - Develop the Python web scraping script independently. This script can be tested separately by running it in your terminal, 
-   and you can use hard-coded or manually input data initially.
 
 3. **Connecting the Parts**:
    - Once you have a functional front end and a working web scraping script, you can build the server and API (using a framework like Flask or Django).
@@ -29,3 +38,5 @@ This approach allows you to break down the development process into manageable s
 It's a good way to troubleshoot issues, test components individually, and simplify debugging.
 
 Make sure to design your API and front-end code with a consistent data format (e.g., using JSON) to ensure a smooth data exchange between them.
+
+
