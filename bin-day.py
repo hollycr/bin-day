@@ -1,4 +1,4 @@
-import re, requests, datetime
+import datetime, re, requests, smtplib
 from bs4 import BeautifulSoup
 
 myURL = "https://community.newcastle.gov.uk/my-neighbourhood/your-details?uprn=004510071116&ens=426954%2C565008&address=85+Tynemouth+Road%2CNewcastle+upon+Tyne%2CNE6+1SH&addresses=004510071116%3B426954%2C565008%3B87+Tynemouth+Road%2CNewcastle+upon+Tyne%2CNE6+1SH" # scraping this with BS doesn't work as it's not plain html, and has JavaScript dynamically loading content
@@ -12,20 +12,26 @@ soup = BeautifulSoup(r.content, 'html5lib')
 data = soup.find('p', ) 
 bigString = data.prettify()
 
-start = bigString.find("Green")
-end = bigString.find("Brown")
-medString = bigString[start:end]
-string = re.sub(r'<.*?>','',medString)
-#print(string)
+greenStart = bigString.find("Green")
+greenEnd = bigString.find("Blue")
+greenString = bigString[greenStart:greenEnd]
+nextGreenIndex = greenString.find("Next collection : ") + 18
+nextGreenStr = greenString[nextGreenIndex:nextGreenIndex+11]
+
+blueStart = bigString.find("Blue")
+blueEnd = bigString.find("Brown")
+blueString = bigString[blueStart:blueEnd]
+nextBlueIndex = blueString.find("Next collection : ") + 18
+nextBlueStr = blueString[nextBlueIndex:nextBlueIndex+11]
+# readable string = re.sub(r'<.*?>','',greenString)
+# print(string)
 
 # times
 now = datetime.datetime.now()
-nextGreenStr = bigString[400:411]
+
 nextGreenDate = datetime.datetime.strptime(nextGreenStr, "%d-%b-%Y")
-nextBlueStr = bigString[570:581]
 nextBlueDate = datetime.datetime.strptime(nextBlueStr, "%d-%b-%Y")
-# print("nextBlueDate",nextBlueDate)
-# print("nextGreenDate: ",nextGreenDate)
+
 # print("now: ", now)
 
 if nextGreenDate < nextBlueDate:
@@ -34,5 +40,8 @@ else:
     print("It's BLUE bin day on Thursday (so put your bin out on Wednesday)!")
 
 # TO-DO
-# - use automation tools to text the result out
+# - use automation tools to email the result out using gmail API
+
+
+
 # - use automation tools so the programme runs on a weekly basis
